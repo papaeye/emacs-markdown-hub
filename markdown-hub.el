@@ -187,9 +187,11 @@ If the value is `boot2docker', it is substituted by $(boot2docker ip)."
   (markdown-hub-ensure-running)
   (markdown-hub-open)
   (add-hook 'kill-emacs-hook #'markdown-hub-stop-container)
+  (add-hook 'kill-buffer-hook #'markdown-hub-teardown nil t)
   (add-hook 'post-command-hook #'markdown-hub-send nil t))
 
 (defun markdown-hub-teardown ()
+  (remove-hook 'kill-buffer-hook #'markdown-hub-teardown t)
   (remove-hook 'post-command-hook #'markdown-hub-send t)
   (markdown-hub-close))
 
