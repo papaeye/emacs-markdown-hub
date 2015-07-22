@@ -22,8 +22,10 @@ markdown-hub.el and Markdown Hub are based on [syohex/emacs-realtime-markdown-vi
 
 ## Usage
 
+(Pull the Docker image of Markdown Hub in advance: `docker pull papaeye/markdown-hub`)
+
 1. Open a Markdown file.
-2. Run `M-x markdown-hub-browse` to open the Markdown Hub preview page.  It pulls the Docker image of Markdown Hub and starts the container.
+2. Run `M-x markdown-hub-browse` to open the Markdown Hub preview page.  It starts the Docker container of Markdown Hub if it is not running.
 3. Run `M-x markdown-hub-mode` to enable Markdown-Hub mode in the Markdown buffer.  Now you can experience live Markdown preview in the Markdown Hub preview page.
 
 To use with boot2docker, add the following code into your .emacs:
