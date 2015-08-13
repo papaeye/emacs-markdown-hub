@@ -177,7 +177,9 @@ If the value is `boot2docker', it is substituted by $(boot2docker ip)."
       (markdown-hub--container-start))
     (sleep-for 1)))
 
+;;;###autoload
 (defun markdown-hub-stop-container ()
+  (interactive)
   (when (markdown-hub--container-running-p)
     (markdown-hub--container-stop)))
 
