@@ -54,9 +54,10 @@
 (defcustom markdown-hub-hostname "127.0.0.1"
   "The default Docker container hostname.
 
-If the value is `boot2docker', it is substituted by $(boot2docker ip)."
+If the value is `docker-machine', it is substituted by
+$(docker-machine ip dev)."
   :type '(choice string
-                 (const :tag "Use $(boot2docker ip)") boot2docker)
+                 (const docker-machine :tag "Use $(docker-machine ip dev)"))
   :group 'markdown-hub)
 
 (defcustom markdown-hub-port 5021
@@ -78,8 +79,8 @@ If the value is `boot2docker', it is substituted by $(boot2docker ip)."
 
 (defun markdown-hub-host ()
   (let ((hostname markdown-hub-hostname))
-    (when (eq hostname 'boot2docker)
-      (setq hostname (shell-command-to-string "boot2docker ip"))
+    (when (eq hostname 'docker-machine)
+      (setq hostname (shell-command-to-string "docker-machine ip dev"))
       (when (string-match "[ \t\r\n]+\\'" hostname)
         (setq hostname (replace-match "" t t hostname))))
     (format "%s:%d" hostname markdown-hub-port)))
